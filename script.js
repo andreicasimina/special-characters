@@ -8,7 +8,7 @@ const status = document.querySelector("#status");
 const characters = Array.from(CHARACTERS);
 
 if (characters.length === 0) {
-  status.textContent = "Add characters to CHARACTERS in script.js.";
+  status.textContent = "script.js の CHARACTERS に文字を追加してください。";
 } else {
   characters.forEach((character) => {
     const button = document.createElement("button");
@@ -17,8 +17,8 @@ if (characters.length === 0) {
     const characterName = getCharacterName(character);
     button.textContent = getButtonLabel(character);
     button.classList.toggle("whitespace", /\s/.test(character));
-    button.setAttribute("aria-label", `Copy ${characterName}`);
-    button.title = `Copy ${characterName}`;
+    button.setAttribute("aria-label", `${characterName}をコピー`);
+    button.title = `${characterName}をコピー`;
     button.addEventListener("click", () => copyCharacter(character, button));
     characterGrid.append(button);
   });
@@ -51,7 +51,7 @@ async function copyCharacter(character, button) {
     helper.remove();
   }
 
-  status.textContent = `Copied ${getCharacterName(character)} to your clipboard.`;
+  status.textContent = `${getCharacterName(character)}をクリップボードにコピーしました。`;
   button.classList.add("copied");
   window.setTimeout(() => button.classList.remove("copied"), 700);
 }
