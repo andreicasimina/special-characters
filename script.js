@@ -1,15 +1,30 @@
-// Edit this value to choose the characters shown on the site.
-// Each character becomes its own copy button, including normal and full-width spaces.
-const CHARACTERS = "あゃｱｧアァ1１AaＡａ田仝々ﾞﾟ¥｢｣()/ｰ,. ･#$+-:?@[]^_|%*={}~゛゜￥「」()／ー―‐－，．　ヽヾゝゞ〃〆・＃＄＋：？＠［］＾＿｜％＊＝｛｝～、。０";
-
 const characterGrid = document.querySelector("#characters");
 const status = document.querySelector("#status");
 
-const characters = Array.from(CHARACTERS);
+loadCharacters();
 
-if (characters.length === 0) {
-  status.textContent = "script.js の CHARACTERS に文字を追加してください。";
-} else {
+async function loadCharacters() {
+  try {
+    const response = await fetch("characters.txt");
+    if (!response.ok) throw new Error("characters.txt could not be loaded");
+
+    const fileContents = await response.text();
+    const characters = fileContents.split(/\r?\n/);
+    // Ignore the empty line created by the usual final newline at the end of a file.
+    if (characters.at(-1) === "") characters.pop();
+
+    if (characters.length === 0) {
+      status.textContent = "characters.txt に文字を追加してください。";
+      return;
+    }
+
+    renderCharacters(characters);
+  } catch {
+    status.textContent = "characters.txt を読み込めませんでした。GitHub Pages 上で開いているか確認してください。";
+  }
+}
+
+function renderCharacters(characters) {
   characters.forEach((character) => {
     const button = document.createElement("button");
     button.className = "character-button";
@@ -27,12 +42,14 @@ if (characters.length === 0) {
 function getButtonLabel(character) {
   if (character === " ") return "半角スペース";
   if (character === "　") return "全角スペース";
+  if (character === "") return "空の行";
   return character;
 }
 
 function getCharacterName(character) {
   if (character === " ") return "半角スペース";
   if (character === "　") return "全角スペース";
+  if (character === "") return "空の行";
   return character;
 }
 
