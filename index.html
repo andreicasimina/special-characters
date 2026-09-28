@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Copy individual characters with one click." />
+    <title>Character Copier</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="card" aria-labelledby="page-title">
+        <p class="eyebrow">Character library</p>
+        <h1 id="page-title">Copy a character</h1>
+        <p class="intro">Select a character below to copy it to your clipboard.</p>
+
+        <div id="characters" class="character-grid" aria-live="polite"></div>
+        <p id="status" class="status" role="status">Ready to copy.</p>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

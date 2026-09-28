@@ -1,0 +1,74 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1e2638;
+  background: #f4f6fb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+.page-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.card {
+  width: min(720px, 100%);
+  padding: clamp(28px, 6vw, 52px);
+  background: #fff;
+  border: 1px solid #e2e7f1;
+  border-radius: 24px;
+  box-shadow: 0 18px 55px rgb(30 38 56 / 10%);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #5b49cf;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.04em; }
+
+.intro { margin: 12px 0 32px; color: #5c667a; font-size: 1.05rem; line-height: 1.55; }
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  gap: 12px;
+}
+
+.character-button {
+  display: grid;
+  min-height: 86px;
+  place-items: center;
+  padding: 10px;
+  color: #252042;
+  background: #f0eeff;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-weight: 700;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+.character-button:hover { background: #e2ddff; transform: translateY(-2px); }
+.character-button:focus-visible { outline: 3px solid #6c58e8; outline-offset: 3px; }
+.character-button.copied { background: #daf7e6; border-color: #2ca76c; }
+
+.status { min-height: 1.5em; margin: 24px 0 0; color: #39634c; font-weight: 650; }
+
+@media (prefers-reduced-motion: reduce) {
+  .character-button { transition: none; }
+}
