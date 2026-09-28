@@ -52,13 +52,13 @@ h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.04em; }
   min-height: 86px;
   place-items: center;
   padding: 10px;
+  overflow: hidden;
   color: #252042;
   background: #f0eeff;
   border: 2px solid transparent;
   border-radius: 14px;
   cursor: pointer;
   font-family: inherit;
-  font-size: clamp(1.8rem, 6vw, 2.5rem);
   font-weight: 700;
   transition: background .16s ease, border-color .16s ease, transform .16s ease;
 }
@@ -69,8 +69,17 @@ h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.04em; }
 
 .character-button.whitespace {
   color: #514b6d;
-  font-size: .72rem;
   letter-spacing: .08em;
+}
+
+.character-label {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .status { min-height: 1.5em; margin: 24px 0 0; color: #39634c; font-weight: 650; }
