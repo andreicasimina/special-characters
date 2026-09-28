@@ -67,6 +67,12 @@ h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.04em; }
 .character-button:focus-visible { outline: 3px solid #6c58e8; outline-offset: 3px; }
 .character-button.copied { background: #daf7e6; border-color: #2ca76c; }
 
+.character-button.whitespace {
+  color: #514b6d;
+  font-size: .72rem;
+  letter-spacing: .08em;
+}
+
 .status { min-height: 1.5em; margin: 24px 0 0; color: #39634c; font-weight: 650; }
 
 @media (prefers-reduced-motion: reduce) {

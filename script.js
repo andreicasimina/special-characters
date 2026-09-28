@@ -1,11 +1,11 @@
 // Edit this value to choose the characters shown on the site.
-// Each character becomes its own copy button. Spaces and line breaks are ignored.
+// Each character becomes its own copy button, including normal and full-width spaces.
 const CHARACTERS = "あゃｱｧアァ1１AaＡａ田仝々ﾞﾟ¥｢｣()/ｰ,. ･#$+-:?@[]^_|%*={}~゛゜￥「」()／ー―‐－，．　ヽヾゝゞ〃〆・＃＄＋：？＠［］＾＿｜％＊＝｛｝～、。０";
 
 const characterGrid = document.querySelector("#characters");
 const status = document.querySelector("#status");
 
-const characters = Array.from(CHARACTERS).filter((character) => !/\s/.test(character));
+const characters = Array.from(CHARACTERS);
 
 if (characters.length === 0) {
   status.textContent = "Add characters to CHARACTERS in script.js.";
@@ -14,12 +14,26 @@ if (characters.length === 0) {
     const button = document.createElement("button");
     button.className = "character-button";
     button.type = "button";
-    button.textContent = character;
-    button.setAttribute("aria-label", `Copy ${character}`);
-    button.title = `Copy ${character}`;
+    const characterName = getCharacterName(character);
+    button.textContent = getButtonLabel(character);
+    button.classList.toggle("whitespace", /\s/.test(character));
+    button.setAttribute("aria-label", `Copy ${characterName}`);
+    button.title = `Copy ${characterName}`;
     button.addEventListener("click", () => copyCharacter(character, button));
     characterGrid.append(button);
   });
+}
+
+function getButtonLabel(character) {
+  if (character === " ") return "半角スペース";
+  if (character === "　") return "全角スペース";
+  return character;
+}
+
+function getCharacterName(character) {
+  if (character === " ") return "半角スペース";
+  if (character === "　") return "全角スペース";
+  return character;
 }
 
 async function copyCharacter(character, button) {
@@ -37,7 +51,7 @@ async function copyCharacter(character, button) {
     helper.remove();
   }
 
-  status.textContent = `Copied “${character}” to your clipboard.`;
+  status.textContent = `Copied ${getCharacterName(character)} to your clipboard.`;
   button.classList.add("copied");
   window.setTimeout(() => button.classList.remove("copied"), 700);
 }
